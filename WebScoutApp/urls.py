@@ -10,6 +10,8 @@ urlpatterns = [
     #path('contact', views.contact, name='contact'),
     path('', views.home, name='home'),
     path('scrape', views.scrape, name='scrape'),
+    path('report', views.report, name='report'),
+    path('export_pdf/', views.export_pdf, name='export_pdf')
     
     #path('about', views.about, name='about'),
 ]

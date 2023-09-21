@@ -19,7 +19,15 @@ class BooksSpider(scrapy.Spider):
         
         cards = response.css(".product_pod")
         for card in cards:
-            title = card.css("h3>a::text").get()
+            #title = card.css("h3>a::text").get()
+            title = card.css('h3 a::attr(title)').get()
+                        
+
+            '''
+            title = card.css("h3>a").get()
+            title = title.attrib["src"].split("/")[3]
+            title = title.split("_")[0]'''
+
             
             rating = card.css(".star-rating").attrib["class"].split(" ")[1]
             
@@ -37,7 +45,8 @@ class BooksSpider(scrapy.Spider):
             self.insertToDb(page, title, rating, image, price, inStock)
     
     def insertToDb(self, page, title, rating, image, price, inStock):
-        client = MongoClient("{YOUR MONGO DB URI}")
+        uri = "" #URI here
+        client = MongoClient(uri)
         db = client.Star_Scrapper
         
         collection = db[page]
