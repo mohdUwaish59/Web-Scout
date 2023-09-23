@@ -1,4 +1,4 @@
-@echo off
+@echo "off"
 
 rem Replace 'C:\path\to\your\virtualenv\Scripts\activate' with the actual path to your virtual environment's 'activate' script.
 call C:\Users\Mohd Uwaish\Desktop\ME\DataScience\WebScout\WebScout_Env\Scripts\activate

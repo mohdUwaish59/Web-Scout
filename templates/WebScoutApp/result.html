@@ -30,7 +30,7 @@
 <form method="post" action="{% url 'home:report' %}">
     {% csrf_token %}
     <input type="hidden" class="form-control" name="url" id="url" value = {{url}}>
-    <button type="submit">Submit</button>
+    <button type="submit">Generate Report</button>
 </form>
 
 <footer class="bg-dark text-light text-center py-3">

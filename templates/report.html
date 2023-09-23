@@ -3,14 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detailed Report </title>
+    <title>Detailed Report - {{ collection_name }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Add your custom CSS styles here */
+
+        /* Center align h1 headings */
+        h1 {
+            text-align: center;
+        }
+
+        /* Add spacing between sections */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        /* Style the list of top-rated books */
+        .top-rated-books ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .top-rated-books li {
+            flex: 0 0 calc(33.33% - 20px);
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Style the footer */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="#">Web Scout</a>
+                <a class="navbar-brand" href="/">Web Scout</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -19,52 +59,65 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/results">Results</a>
-                        </li>
+                        
                         <a href="{% url 'home:export_pdf' %}" class="btn btn-outline-primary">Download Report</a>
-
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-<body>
-    <h1>Price Distribution Report</h1>
-    <div>{{ plot_div|safe }}</div>
-    <br>
-    <br>
-    <h1>In Stock Report</h1>
-    <div>{{ chart_div_2|safe }}</div>
-    <br>
-    <br>
-    <h1>Price vs Rating Report</h1>
-    <div>{{ chart_div_3|safe }}</div>
-    <h1>Top-Rated Book</h1>
-
-    <!-- Display top-rated books -->
-    <ul>
-        {% for book in top_rated_books %}
-            <li>
-                <img src="{{ book.Image_Url }}" alt="{{ book.Title }}" width="100" height="150">
-                <strong>Title:</strong> {{ book.Title }}<br>
-                <strong>Rating:</strong> {{ book.Rating }}/5<br>
-                <strong>Price:</strong> {{ book.Price }}<br>
-                <strong>In Stock:</strong> {{ book.inStock }}<br>
-            </li>
-        {% endfor %}
-    </ul>
-    <h2>Word Cloud for Book Titles</h2>
-<div>
-    <img src="data:image/png;base64,{{ wordcloud_image }}" alt="Word Cloud">
-</div>
-
-<footer class="bg-dark text-light text-center py-3">
     <div class="container">
-        &copy; {{ year }} Web Scout
+        <!-- Price Distribution Report -->
+        <h1>{{ collection_name }} - Detailed Report</h1> <br><br><br>
+        <div class="section">
+            <h1>Price Distribution Report</h1>
+            <div>{{ plot_div|safe }}</div>
+        </div>
+        
+        <!-- In Stock Report -->
+        <div class="section">
+            <h1>In Stock Report</h1>
+            <div>{{ chart_div_2|safe }}</div>
+        </div>
+        
+        <!-- Price vs Rating Report -->
+        <div class="section">
+            <h1>Price vs Rating Report</h1>
+            <div>{{ chart_div_3|safe }}</div>
+        </div>
+        
+        <!-- Top-Rated Books -->
+        <div class="section top-rated-books">
+            <h1>Top-Rated Books</h1>
+            <ul>
+                {% for book in top_rated_books %}
+                    <li>
+                        <img src="{{ book.Image_Url }}" alt="{{ book.Title }}" width="100" height="150">
+                        <p><strong>Title:</strong> {{ book.Title }}</p>
+                        <p><strong>Rating:</strong> {{ book.Rating }}/5</p>
+                        <p><strong>Price:</strong> {{ book.Price }}</p>
+                        <p><strong>In Stock:</strong> {{ book.inStock }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <!-- Word Cloud for Book Titles -->
+        <div class="section">
+            <h2>Word Cloud for Book Titles</h2>
+            <div>
+                <img src="data:image/png;base64,{{ wordcloud_image }}" alt="Word Cloud">
+            </div>
+        </div>
     </div>
-</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            &copy; {{ year }} Web Scout
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

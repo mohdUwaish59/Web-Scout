@@ -22,7 +22,7 @@ from django.http import FileResponse
 from xhtml2pdf import pisa
 
 # Create your views here.
-uri = ""# URI here
+uri = "mongodb+srv://Mohd_Uwaish_Scrapy:QzcG8c9LOMWoqeHp@cluster0.olcx7kr.mongodb.net/"# URI here
 client = pymongo.MongoClient(uri)
 db = client.Star_Scrapper
 url_g=None
@@ -36,12 +36,15 @@ def scrape(request):
         url = request.POST.get('url')
         global url_g 
         url_g = url
+        print(url)
 
         # Replace 'run_spider.bat' with the actual path to your modified batch script
-        script_path = r'' #PATH HERE
-
+        script_path = r'C:\Users\Mohd Uwaish\Desktop\ME\DataScience\WebScout\run_spider.bat' #PATH HERE
+       
         # Run the batch script and pass the URL as an argument
         result = subprocess.run([script_path, url], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        print("Script ran")
+
 
         # Check the return code to determine success or failure
         if result.returncode == 0:
@@ -49,8 +52,10 @@ def scrape(request):
             output = f'Spider has been run successfully.\n\n{result.stdout}'
             #get_book_prices()
             report = True
-            return render(request, 'WebScoutApp/result.html', {"report":report,"url":url})
-            return HttpResponse(output)
+            messages.success(request, 'Scraping is completed, Kindly go to Generate Report to view detaild visualization report.')
+
+            # Redirect to the homepage
+            return redirect('home:home')
         
         else:
             # Batch script encountered an error
@@ -80,13 +85,15 @@ def get_book_prices(request):
 
     return book_prices
 
+def list_db(request):
+    collection_names = db.list_collection_names()
+    return render(request, 'db_list.html', {"collection_names": collection_names})
 
-
-def report(request):
+def report(request, collection_name):
     # Connect to MongoDB
     #collection_name = url_g.split("/")[6]
-    #collection = db[collection_name]
-    collection =db['travel_2']
+    collection = db[collection_name]
+    #collection =db['travel_2']
 
     rating_mapping = {
     "One": 1,
@@ -95,18 +102,6 @@ def report(request):
     "Four": 4,
     "Five": 5,
 }
-
-    '''#Fetch Titles
-    book_titles = [doc['Title'] for doc in collection.find({}, {'Title': 1})]
-    #Fetch Rating
-    book_rating = [doc['Rating'] for doc in collection.find({}, {'Rating': 1})]
-    # Fetch book prices
-    book_prices = [float(doc['Price'][1:]) for doc in collection.find({}, {'Price': 1})]
-    #Fetch inStock
-    book_inStock = [doc['inStock'] for doc in collection.find({}, {'inStock': 1})]
-    #Fetch Date
-    book_date = [doc['date'] for doc in collection.find({}, {'date': 1})]'''
-
     df = pd.DataFrame(list(collection.find()))
 
     # Apply the rating mapping to the 'Rating' column
@@ -121,9 +116,26 @@ def report(request):
     book_prices = df['Price'].tolist()
     book_inStock = df['inStock'].tolist()
     book_date = df['date'].tolist()
+    lis = [i for i in range(1,len(book_titles)+1)]
 
      # Generate Price Distribution Histogram-----------1
-    fig = px.histogram(df, x=book_prices)
+    #fig = px.histogram(df, x=book_prices)
+    fig = px.scatter(
+        df,
+        x=lis, 
+        y=book_prices,
+        color=book_prices, 
+        size=book_rating,
+        hover_name=book_titles, 
+        hover_data=[book_prices, lis],
+        title='Bubble Plot of Book Prices Over Time'
+    )
+    fig.update_traces(
+    hovertemplate='%{text}' + '<br>Price: %{customdata[0]}<br>Book no: %{customdata[1]}',
+    text=book_titles
+   )
+    fig.update_yaxes(title_text="Price")
+    fig.update_xaxes(title_text="Book Number")
     plot_div = fig.to_html(full_html=False)
 
     # Count the number of in-stock and out-of-stock books-------------------2
@@ -138,7 +150,22 @@ def report(request):
 
 
     #Price vs. Rating Scatter Plot--------------------3
-    fig = px.scatter(df, x=book_prices, y=book_rating, title='Price vs. Rating Scatter Plot')
+    fig = px.scatter(
+        df, 
+        x=book_prices, 
+        y=book_rating, 
+        color = book_rating,
+        size = book_prices,
+        hover_name=book_titles, 
+        hover_data=[book_prices, book_rating],
+        title='Price vs. Rating Scatter Plot'
+    )
+    fig.update_traces(
+    hovertemplate='%{text}' + '<br>Price: %{customdata[0]}<br>Book Rating: %{customdata[1]}',
+    
+   )
+    fig.update_yaxes(title_text="Rating")
+    fig.update_xaxes(title_text="Price (Euro)")
     # Convert the chart to HTML
     chart_div_3 = fig.to_html(full_html=False)
 
@@ -162,6 +189,7 @@ def report(request):
         'chart_div_3': chart_div_3,
         'top_rated_books': top_rated_books,
         'wordcloud_image': wordcloud_image,
+        'collection_name':collection_name,
 
     }
     generate_report_html(context)
