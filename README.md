@@ -48,14 +48,20 @@ To get started with WebScout, follow these installation steps:
 
    ```bash
    git clone https://github.com/mohdUwaish59/Web-Scout.git
+2. **Get into the directory:**
    ```bash
    cd Web-Scout
+3. **Configure Virtual environment:**
    ```bash
    virtualenv WebScout_Env
+4. **Activate the virtual environment:**
    ```bash
    For Windows
    WebScout_Env/Scripts/Activate
+5. **install requirments:**
   ```bash
    pip install -r requirements.txt
+
+6. **install requirments:**
   ```bash
    python manage.py runserver
