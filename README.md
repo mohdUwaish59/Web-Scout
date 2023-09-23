@@ -64,7 +64,7 @@ WebScout combines the power of these technologies to provide a seamless web scra
 
 ## Contributing
 
-We welcome contributions from the open-source community to help improve and expand WebScout's functionality. If you'd like to contribute, please refer to the [Contribution Guidelines](CONTRIBUTING.md) in the project repository for more information on how to get started.
+We welcome contributions from the open-source community to help improve and expand WebScout's functionality. If you'd like to contribute, please refer to the [Contribution Guidelines](LICENSE.md) in the project repository for more information on how to get started.
 
 ## Installation
 
