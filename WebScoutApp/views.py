@@ -22,7 +22,7 @@ from django.http import FileResponse
 from xhtml2pdf import pisa
 
 # Create your views here.
-uri = "mongodb+srv://Mohd_Uwaish_Scrapy:QzcG8c9LOMWoqeHp@cluster0.olcx7kr.mongodb.net/"# URI here
+uri = ""# URI here
 client = pymongo.MongoClient(uri)
 db = client.Star_Scrapper
 url_g=None
@@ -39,7 +39,7 @@ def scrape(request):
         print(url)
 
         # Replace 'run_spider.bat' with the actual path to your modified batch script
-        script_path = r'C:\Users\Mohd Uwaish\Desktop\ME\DataScience\WebScout\run_spider.bat' #PATH HERE
+        script_path = r'' #PATH HERE
        
         # Run the batch script and pass the URL as an argument
         result = subprocess.run([script_path, url], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
