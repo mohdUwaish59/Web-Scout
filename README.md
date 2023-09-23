@@ -58,10 +58,7 @@ To get started with WebScout, follow these installation steps:
    ```bash
    For Windows
    WebScout_Env/Scripts/Activate
-5. **Install Dependencies:**
+5. **Install Dependencies and run server:**
   ```bash
    pip install -r requirements.txt
-
-6. **Run the server:**
-  ```bash
    python manage.py runserver
