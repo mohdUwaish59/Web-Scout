@@ -23,6 +23,30 @@ Key features of WebScout include:
 - **Report Generation**: Users can generate comprehensive reports that include charts, graphs, and word clouds based on the scraped data.
 
 ## Screenshots
+Homepage:
+![Screenshot](Images/Homepage.png)  
+  
+Message after scrapping:
+![Screenshot](Images/Scrape_Success.png)  
+  
+List of mongoDB Collections created  after each scrapping: 
+![Screenshot](Images/MongoDB_Collections_List.png) 
+  
+Detailed Report:
+![Screenshot](Images/Book_Prices.png) 
+  
+![Screenshot](Images/inStock.png)
+  
+![Screenshot](Images/Price_vs_Rating.png)
+  
+![Screenshot](Images/Top_Rated.png)
+  
+![Screenshot](Images/Word_Cloud.png)
+
+
+
+
+  
 
 ## Technologies Used
 
