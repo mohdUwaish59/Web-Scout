@@ -62,6 +62,6 @@ To get started with WebScout, follow these installation steps:
   ```bash
    pip install -r requirements.txt
 
-6. **install requirments:**
+6. **Run the server:**
   ```bash
    python manage.py runserver
