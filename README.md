@@ -3,13 +3,10 @@
 ## Table of Contents
 
 - [About](#about)
-- [Installation](#installation)
-- [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [License](#license)
-
+- [Installation](#installation)
 ## About
 WebScout is a powerful web scraping and data visualization tool built using Django. It allows users to extract data from website [source](https://books.toscrape.com/index.html), store it in a MongoDB database, and generate detailed reports with visualizations.
 
@@ -25,6 +22,8 @@ Key features of WebScout include:
 
 - **Report Generation**: Users can generate comprehensive reports that include charts, graphs, and word clouds based on the scraped data.
 
+## Screenshots
+
 ## Technologies Used
 
 WebScout is built using the following technologies and libraries:
@@ -38,6 +37,11 @@ WebScout is built using the following technologies and libraries:
 - Other Python libraries for web development and data processing.
 
 WebScout combines the power of these technologies to provide a seamless web scraping and data analysis experience.
+
+## Contributing
+
+We welcome contributions from the open-source community to help improve and expand WebScout's functionality. If you'd like to contribute, please refer to the [Contribution Guidelines](CONTRIBUTING.md) in the project repository for more information on how to get started.
+
 ## Installation
 
 To get started with WebScout, follow these installation steps:
