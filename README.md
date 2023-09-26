@@ -87,9 +87,14 @@ To get started with WebScout, follow these installation steps:
    For Windows
    WebScout_Env/Scripts/Activate
 5. **Install Dependencies and run server:**
-  ```bash
+   ```bash
    pip install -r requirements.txt
-   paste the mongoDB URI in book spider and GettyImages spider at thier respetive places.
    python manage.py runserver
+6. **Set up mongoDB uri and paste it in book spider and GettyImages spider at thier respetive places**
+7. **Run the web server**
+  ```bash
+   python manage.py runserver
+   
+
 
 
