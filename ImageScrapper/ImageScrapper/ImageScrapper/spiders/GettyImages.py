@@ -30,7 +30,7 @@ class GettyImagesSpider(scrapy.Spider):
     # MongoDB connection and data insertion function
     def insertToDb(self, item, db_name, collection_name):
         try:
-            client = pymongo.MongoClient("mongodb+srv://Mohd_Uwaish_Scrapy:QzcG8c9LOMWoqeHp@cluster0.olcx7kr.mongodb.net/")
+            client = pymongo.MongoClient("")
             db = client[db_name]
             collection = db[collection_name]
             doc = dict(item)
