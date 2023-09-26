@@ -92,9 +92,5 @@ To get started with WebScout, follow these installation steps:
    python manage.py runserver
 6. **Set up mongoDB uri and paste it in book spider and GettyImages spider at thier respetive places**
 7. **Run the web server**
-  ```bash
+   ```bash
    python manage.py runserver
-   
-
-
-
