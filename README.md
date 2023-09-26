@@ -24,7 +24,7 @@ Key features of WebScout include:
 
 ## Screenshots
 Homepage:
-![Screenshot](Images/home.png)  
+![Screenshot](Images/Home.png)  
   
 Message after scrapping:
 ![Screenshot](Images/Scrape_Success.png)  
