@@ -8,7 +8,7 @@
 - [Contributing](#contributing)
 - [Installation](#installation)
 ## About
-WebScout is a powerful web scraping and data visualization tool built using Django. It allows users to extract data from website [source](https://books.toscrape.com/index.html), store it in a MongoDB database, and generate detailed reports with visualizations.
+WebScout is a powerful web scraping and data visualization tool built using Scrapy and Django. It allows users to extract data from website [source](https://books.toscrape.com/index.html) and Images from [Getty Imges portal](https://www.gettyimages.de/), store it in a MongoDB database, and generate detailed reports with visualizations.
 
 Web scraping is a common technique used for various purposes, such as market research, competitive analysis, or data collection for research projects. WebScout simplifies the process by providing an easy-to-use web interface for scraping data from websites. Users can simply input the URL of the target website, and WebScout will handle the rest.
 
@@ -69,7 +69,7 @@ We welcome contributions from the open-source community to help improve and expa
 ## Installation
 
 To get started with WebScout, follow these installation steps:
-
+1. **Connect to a mongoDB cluster and note the uri, it will be neede to connect to the cluster.**
 1. **Clone the Repository:**
 
    Clone the WebScout repository to your local machine using Git:
@@ -89,4 +89,7 @@ To get started with WebScout, follow these installation steps:
 5. **Install Dependencies and run server:**
   ```bash
    pip install -r requirements.txt
+   paste the mongoDB URI in book spider and GettyImages spider at thier respetive places.
    python manage.py runserver
+
+
