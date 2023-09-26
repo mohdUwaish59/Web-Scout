@@ -92,7 +92,7 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
-IMAGES_STORE = 'C:/Users/Mohd Uwaish/Desktop/ME/DataScience/Web_Scrapping_Projects/ImageScrapper/Images_Dump'
+IMAGES_STORE = 'C:/Users/Mohd Uwaish/Desktop/ME/DataScience/WebScout/ImageScrapper/image_dump'
 
 # Configure the image pipeline
 ITEM_PIPELINES = {

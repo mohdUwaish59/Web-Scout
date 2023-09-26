@@ -45,7 +45,7 @@ class BooksSpider(scrapy.Spider):
             self.insertToDb(page, title, rating, image, price, inStock)
     
     def insertToDb(self, page, title, rating, image, price, inStock):
-        uri = "" #URI here
+        uri = "mongodb+srv://Mohd_Uwaish_Scrapy:QzcG8c9LOMWoqeHp@cluster0.olcx7kr.mongodb.net/" #URI here
         client = MongoClient(uri)
         db = client.Star_Scrapper
         

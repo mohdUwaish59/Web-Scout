@@ -22,7 +22,7 @@ from django.http import FileResponse
 from xhtml2pdf import pisa
 
 # Create your views here.
-uri = ""# URI here
+uri = "mongodb+srv://Mohd_Uwaish_Scrapy:QzcG8c9LOMWoqeHp@cluster0.olcx7kr.mongodb.net/"# URI here
 client = pymongo.MongoClient(uri)
 db = client.Star_Scrapper
 url_g=None
@@ -34,16 +34,27 @@ def scrape(request):
     if request.method == 'POST':
         # Get the URL input from the form
         url = request.POST.get('url')
+        choice = request.POST.get("choice")
+        print(choice)
         global url_g 
         url_g = url
         print(url)
 
-        # Replace 'run_spider.bat' with the actual path to your modified batch script
-        script_path = r'' #PATH HERE
+        if url !='' and choice=='book':
+            # Replace 'run_spider.bat' with the actual path to your modified batch script
+            script_path = r'C:\Users\Mohd Uwaish\Desktop\ME\DataScience\WebScout\run_spider.bat' #PATH HERE
        
-        # Run the batch script and pass the URL as an argument
-        result = subprocess.run([script_path, url], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        print("Script ran")
+            # Run the batch script and pass the URL as an argument
+            result = subprocess.run([script_path, url], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            print("Script ran")
+        elif url!='' and choice=='images':
+            #url=url+"&page={}"
+            # Replace 'run_spider.bat' with the actual path to your modified batch script
+            script_path = r'C:\Users\Mohd Uwaish\Desktop\ME\DataScience\WebScout\run_image_spider.bat' #PATH HERE
+       
+            # Run the batch script and pass the URL as an argument
+            result = subprocess.run([script_path, url], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            print("Script ran")
 
 
         # Check the return code to determine success or failure
@@ -69,6 +80,8 @@ def get_book_prices(request):
 
     # Replace 'books' with your actual collection name
     url=request.post.get("url")
+    choice = request.get("choice")
+    print(choice)
     collection_name = url.split("/")[6]
     collection = db[collection_name]
 

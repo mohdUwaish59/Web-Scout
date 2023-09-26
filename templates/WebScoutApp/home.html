@@ -5,114 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Scraping Tool</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-    {% if messages %}
-<div class="alert alert-success">
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-</div>
-{% endif %}
-    
-
-
-    <style>
-        /* Custom CSS styles for the homepage */
-
-        /* Center align the header text */
-        .header-text {
-            text-align: center;
-        }
-
-        /* Style the main content container */
-        .main-container {
-            margin-top: 20px;
-            margin-bottom: 100px; /* Adjust this margin to push the footer down */
-        }
-
-        /* Add spacing between elements */
-        .mt-3 {
-            margin-top: 1.5rem;
-        }
-
-        /* Style the "Scrape" button */
-        .btn-scrape {
-            background-color: #007BFF;
-            color: #fff;
-        }
-
-        /* Style the "Generate Report" button */
-        .btn-report {
-            background-color: #28a745;
-            color: #fff;
-        }
-
-        /* Style the footer */
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background-color: #343a40;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
-    </style>
 </head>
 <body>
-    <header>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="#">Web Scout</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">Home</a>
-                        </li>
-                        
-                        <a href="{% url 'home:list_db' %}" class="btn btn-outline-primary">Generate Report</a>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Web Scout</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main class="container mt-5">
-        <div class="header-text">
+    <div class="container mt-5">
+        <div class="text-center">
             <h1>Welcome to Web Scout</h1>
             <p>Your source for web data scraping and reporting</p>
         </div>
 
-        <!-- Web Scraping Form -->
-        <div class="main-container">
+        <div class="mt-5">
             <h2>Get Started</h2>
             <p>Enter the URL you want to scrape:</p>
             <form method="post" action="/scrape">
                 {% csrf_token %}
-                <div class="form-group">
+                <div class="mb-3">
                     <input type="url" class="form-control" name="url" placeholder="Enter URL" required>
                 </div>
-                <button type="submit" class="btn btn-scrape">Scrape</button>
+                <!-- Dropdown with two options -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="choice">Choose Scraping Option</label>
+                    </div>
+                    <select class="custom-select" id="choice" name="choice">
+                        <option selected>Choose...</option>
+                        <option value="book">Book Data Scraping</option>
+                        <option value="images">Images Scraping</option>
+                    </select>
+                </div>
+                <!-- Scrape button -->
+                <button type="submit" class="btn btn-primary ml-2">Scrape</button>
             </form>
-
             <!-- Generate Report Button -->
-            <a class="btn btn-report mt-3" href="/list_db" role="button">Generate Report</a>
+            <a class="btn btn-success mt-3" href="/list_db" role="button">Generate Report</a>
         </div>
-    </main>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer bg-dark text-white text-center py-2">
         <div class="container">
             &copy; {{ year }} Web Scout
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Add Bootstrap's JavaScript and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
